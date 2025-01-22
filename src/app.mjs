@@ -1,5 +1,6 @@
 import express from "express";
 import { sequelize } from "./db/sequelize.mjs";
+import { initDb } from "./db/sequelize.mjs";
 
 const app = express(); // create express app
 app.use(express.json());
