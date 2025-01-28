@@ -1,11 +1,16 @@
+// Importantion de la dependence express
 import express from "express";
 import { sequelize } from "./db/sequelize.mjs";
 import { initDb } from "./db/sequelize.mjs";
 
-const app = express(); // create express app
+// On crée une instance avec la constant APP
+// APP permetra gerer les routes, recevoir et envoyer les requetes
+const app = express();
+
 app.use(express.json());
 
-const port = 3000; // on define le port
+// Define le port => 3000
+const port = 3000;
 
 app.get("/", (req, res) => {
   res.send("API REST of self service machine !");
@@ -20,6 +25,7 @@ import { productsRouter } from "./routes/products.mjs";
 // tous les routes qui commence par /api/products seront redirigé vers productsRouter
 app.use("/api/products", productsRouter);
 
+// Démarre le serveur avec le port defini, en affichant un message sur la console.
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`);
 });

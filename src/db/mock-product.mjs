@@ -1,3 +1,5 @@
+// Tableau des produits de base
+// Ces produits ne seront pas effacés au moment de redémarrage nodemon
 let products = [
   {
     id: 1,
@@ -70,4 +72,5 @@ const getUniqueId = () => {
   return uniqueId;
 };
 
+// On exporte cette tableau "products" pour l'utiliser ailleur
 export { products };
