@@ -35,6 +35,12 @@ let products = [
     price: 10.0,
     created: new Date(),
   },
+  {
+    id: 10,
+    name: "Big Tasty",
+    price: 5.99,
+    created: new Date(),
+  },
 ];
 
 /**

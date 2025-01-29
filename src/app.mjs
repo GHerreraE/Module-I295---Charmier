@@ -37,6 +37,14 @@ productsRouter.get("/:id", (req, res) => {
   res.json(success(message, product));
 });
 
+// Si aucune route ne correspondant à l'URL demandée par le consommateur
+app.use(({ res }) => {
+  // constant pour stocker ce message
+  const message =
+    "Impossible de trouver la ressource demandée ! Vous pouvez essayer une autre URL.";
+  // reponse avec le status 404 + message en JSON = Le serveur n'a pas trouvé ce qui était demandé
+  res.status(404).json(message);
+});
 sequelize
   .authenticate()
   .then((_) =>
