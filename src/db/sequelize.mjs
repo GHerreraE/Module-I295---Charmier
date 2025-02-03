@@ -15,12 +15,16 @@ import { products } from "./mock-product.mjs";
 // Le modèle product
 const Product = ProductModel(sequelize, DataTypes);
 
+// variable pour initialiser la base de données (produits et users)
 let initDb = () => {
   return sequelize
     .sync({ force: true }) // Force la synchro => donc supprime les données également
     .then((_) => {
       importProducts();
-      console.log("La base de données db_products a bien été synchronisée");
+      importUsers();
+      console.log(
+        "La base de données db_products a bien été synchronisée avec les users"
+      );
     });
 };
 
@@ -33,4 +37,19 @@ const importProducts = () => {
     }).then((product) => console.log(product.toJSON()));
   });
 };
-export { sequelize, initDb, Product };
+
+// importation de la table de users
+const importUsers = () => {
+  // appell librery
+  bcrypt
+    .hash("etml", 10) // temps pour hasher = du sel
+    .then((hash) =>
+      // creation d'un user ETML avec le mot de passe haché
+      User.create({
+        username: "etml",
+        password: hash,
+      })
+    )
+    .then((user) => console.log(user.toJSON()));
+};
+export { sequelize, initDb, Product, importUsers };
