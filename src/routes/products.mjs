@@ -5,14 +5,50 @@ import { products } from "../db/mock-product.mjs";
 import { success } from "./helper.mjs";
 import { Product } from "../db/sequelize.mjs";
 import { ValidationError, Op } from "sequelize";
+import { auth } from "../auth/auth.mjs";
 
 // Instance d'express avec express
 const productsRouter = express();
 
+/**
+ * @swagger
+ * /api/products/:
+ *  get:
+ *    tags: [Products]
+ *    security:
+ *      - bearerAuth: []
+ *    summary: Retrieve all products.
+ *    description: Retrieve all products. Can be used to populate a select HTML tag.
+ *    responses:
+ *      200:
+ *        description: All products.
+ *        content:
+ *         application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              data:
+ *                type: object
+ *                properties:
+ *                  id:
+ *                    type: integer
+ *                    description: The product ID.
+ *                    example: 1
+ *                  name:
+ *                    type: string
+ *                    description: The product's name.
+ *                    example: Big Mac
+ *                  price:
+ *                    type: number
+ *                    description: The product's price.
+ *                    example: 5.99
+ *
+ */
+
 // Route permettant de récupérer tous les produits dans le DB
 // Retourne la liste des produits en JSON pour le consommateur (client)
 // route => api/produits
-productsRouter.get("/", (req, res) => {
+productsRouter.get("/", auth, (req, res) => {
   // validation pour compter les nombrs de terme qui se trouvent avec une meme recherce => C'est un COUNT en SQL
   if (req.query.name) {
     // retourn de message
@@ -52,7 +88,7 @@ productsRouter.get("/", (req, res) => {
 });
 
 // Route permettant de récupérer juste un produit avec le ID
-productsRouter.get("/:id", (req, res) => {
+productsRouter.get("/:id", auth, (req, res) => {
   // Model Product qui apelle la fonction findByPk
   // findByPk a des paramètres par default
   // .then execute cette tache (si ya pas une autre)
@@ -84,7 +120,7 @@ productsRouter.get("/:id", (req, res) => {
 });
 
 // Route permettant de créer un produit
-productsRouter.post("/", (req, res) => {
+productsRouter.post("/", (auth, req, res) => {
   // Méthode Sequelize qui permet inserer des données dans la db
   // Les paramètres aussi sont par default => pas besoin de les faires
   // .then execute cette tache après l'autre
@@ -112,7 +148,7 @@ productsRouter.post("/", (req, res) => {
 });
 
 // Route permettant d'effacer un produit avec le ID
-productsRouter.delete("/:id", (req, res) => {
+productsRouter.delete("/:id", auth, (req, res) => {
   // Méthode sequelize => findByPK qui permet select un produit
   // Paramètres => Par default
   // .then
@@ -146,7 +182,7 @@ productsRouter.delete("/:id", (req, res) => {
 });
 
 // Route permettant de changer les données dans la base de données
-productsRouter.put("/:id", (req, res) => {
+productsRouter.put("/:id", auth, (req, res) => {
   // constant pour modifier la donnée du produit avec l'ID recherché
   const productId = req.params.id;
   // Update avec l'ID

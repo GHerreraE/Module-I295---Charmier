@@ -1,5 +1,7 @@
 import { Sequelize, DataTypes } from "sequelize";
 import { ProductModel } from "../models/products.mjs";
+import bcrypt from "bcrypt";
+import { UserModel } from "../models/UserModel.mjs";
 const sequelize = new Sequelize(
   "db_products", // Nom de la DB qui doit exister
   "root", // Nom de l'utilisateur
@@ -37,6 +39,9 @@ const importProducts = () => {
     }).then((product) => console.log(product.toJSON()));
   });
 };
+
+// création de nouvelle constante pour utiliser la méthode create from
+const User = UserModel(sequelize, DataTypes);
 
 // importation de la table de users
 const importUsers = () => {

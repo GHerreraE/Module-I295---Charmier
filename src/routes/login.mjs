@@ -2,7 +2,7 @@ import express from "express";
 import bcrypt from "bcrypt";
 // importation de jwt pour generer un token pour la session d'un user
 import jwt from "jsonwebtoken";
-import { User } from "../db/sequelize.mjs";
+import { importUsers } from "../db/sequelize.mjs";
 import { privateKey } from "../auth/private_key.mjs";
 const loginRouter = express();
 loginRouter.post("/", (req, res) => {

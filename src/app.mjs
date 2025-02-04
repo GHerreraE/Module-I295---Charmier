@@ -4,6 +4,8 @@ import { sequelize } from "./db/sequelize.mjs";
 import { initDb } from "./db/sequelize.mjs";
 // Importation des methodes pour mettre une limite à la recherches des products
 import { ValidationError, Op } from "sequelize";
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./swagger.mjs";
 
 // On crée une instance avec la constant APP
 // APP permetra gerer les routes, recevoir et envoyer les requetes
@@ -13,6 +15,14 @@ app.use(express.json());
 
 // Define le port => 3000
 const port = 3000;
+
+// Route pour accéder à la documentation Swagger
+//const specs = swaggerJsdoc(options);
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerSpec, { explorer: true })
+);
 
 app.get("/", (req, res) => {
   res.send("API REST of self service machine !");
