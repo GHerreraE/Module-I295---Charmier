@@ -1,0 +1,33 @@
+verbe HTTP ║ URI            ║ JSON ? 		            ║ Description
+═══════════╬════════════════╬═══════════════════════════╬════════════════════════════════
+GET        ║ /api/teacher   ║ non    		            ║ recuperer la liste des profs
+═══════════╬════════════════╬═══════════════════════════╬════════════════════════════════
+POST       ║ /api/login     ║ {"username", "password"}  ║ Obtenir un token jwt
+═══════════╬════════════════╬═══════════════════════════╬════════════════════════════════
+PUT	       ║ /api/teacher/3 ║ {JSON teacher,fk section} ║ mettre a jour teachers
+═══════════╬════════════════╬═══════════════════════════╬════════════════════════════════
+GET	       ║ /api/sections  ║ non                       ║ recuperer la liste des sections
+═══════════╬════════════════╬═══════════════════════════╬════════════════════════════════
+DELETE     ║ /api/teacher/4 ║ non                       ║ Supprimer 1 enseignant
+═══════════╬════════════════╬═══════════════════════════╬════════════════════════════════
+POST       ║ /api/teachers  ║ {json teacher}            ║ ajouter 1 enseignant
+═══════════╬════════════════╬═══════════════════════════╬════════════════════════════════
+GET        ║ /api/teacher/3 ║ non                       ║  recuperer 1 enseignant
+═══════════╬════════════════╬═══════════════════════════╬════════════════════════════════
+GET        ║ /api/section/1 ║ non                       ║ recuperer une section
+═══════════╬════════════════╬═══════════════════════════╬════════════════════════════════
+
+
+
++------------+---------------------------+------------------------------------------------------+-------------------------------------+
+| Verbe HTTP |            URI            |                         JSON                         |             Description             |
++------------+---------------------------+------------------------------------------------------+-------------------------------------+
+| GET        | /api/teachers             | NON                                                  | Récupérer la liste des enseignants  |
+| POST       | /api/login                | {"username": "etml", "password": "etml"}             | Obtenir un token JWT                |
+| GET        | /api/teachers/:id         | NON                                                  | Récupérer un enseignant             |
+| POST       | /api/teachers/            | {firstname, lastname, gender, origin, fksection}     | Ajout d'un enseignants              |
+| PUT        | /api/teachers/:id         | {firstname, lastname, gender, origin, fksection}     | Modification d'un enseignant        |
+| DELETE     | /api/teachers/:id         | NON                                                  | Supression d'un enseignant          |
+| GET        | /api/sections             | NON                                                  | Récupérer la liste des sections     |
+| GET        | /api/sections/:id         | NON                                                  | Récupérer une section               |
++------------+---------------------------+------------------------------------------------------+-------------------------------------+
