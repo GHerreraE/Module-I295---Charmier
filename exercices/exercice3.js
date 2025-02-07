@@ -7,11 +7,10 @@ let numbers = [1, 2, 3, 4, 5]; // tableau avec les chiffres
 // Solution utilisant le paradigme procédurale
 
 // condition => si i est plus petit que la longueur de numbers
-// let sum = 0; // variable pour stocker la somme de toutes les chiffres
-/*for (let i = 0; i < numbers.length; i++) {
+let sum = 0; // variable pour stocker la somme de toutes les chiffres
+for (let i = 0; i < numbers.length; i++) {
   sum += numbers[i]; // on ajoute la valeur de numbers[i] à la variable sum
 }
-*/
 
 // Solution utilisant le paradigme fonctionnel
 // constant pour stocker la somme des valeurs
